@@ -29,17 +29,20 @@ int main() {
         cout << "Please Enter item no " << i << " you want to insert in your queue: ";
         cin >> values;
     }
+    
     insert(&test1, values);
     cout << "These are the values in the first queue before copy: " << endl;
     print(&test1);
     cout << "These are the values in the second queue before copy: " << endl;
     print(&test2);
+    
    /* copyqueue(&test1, &test2);
     cout<<"\nThese are the values in the first queue after copy: "<<endl;
        print(&test1);
     cout<<"\nThese are the values in the second queue after copy: "<<endl;
        print(&test2);
        */
+    
     modifyqueue(&test1, &test2);
     cout << "These are the values in the first queue after modification: " << endl;
     print(&test1);
@@ -54,10 +57,12 @@ int main() {
     return 0;
 }
 
+// This function makes a queue start at an empty state.
 void initialize(struct queue* init) {
     init->front = init->rear = size - 1;
 }
 
+// This function checks if a queue is empty
 int isempty(struct queue* e) {
     if (e->front == e->rear)
         return 1;
@@ -65,12 +70,16 @@ int isempty(struct queue* e) {
         return 0;
 }
 
+// This function checks if a queue is full
+
 int isfull(struct queue* f) {
     if (f->rear == f->front)
         return 1;
     else
         return 0;
 }
+
+// This function inserts values into a queue
 
 void insert(struct queue* in, int x){
     if (in->rear == size - 1)
@@ -84,6 +93,8 @@ void insert(struct queue* in, int x){
     else
         in->items[in->rear] = x;
 }
+
+// This function removes values from a queue
 
 int remove(struct queue* rem){
     int val = 0;
@@ -104,6 +115,8 @@ int remove(struct queue* rem){
     }
 }
 
+// This function copies the value of one queue and pastes it in another queue
+
 void copyqueue(struct queue* src, struct queue* dest) {
     struct queue temp;
     initialize(&temp);
@@ -121,6 +134,8 @@ void copyqueue(struct queue* src, struct queue* dest) {
     }
 }
 
+// This function prints the values of the queue on the screen
+
 void print(struct queue* pr) {
     struct queue temp;
     initialize(&temp);
@@ -137,6 +152,10 @@ void print(struct queue* pr) {
     }
     cout << endl <<endl;
 }
+
+
+/* This function modifies the values of the original queue and inserts the new value in a modified queue
+ Values in original queue greater than 5 are replaced with 1 while values less than 5 are replaced with 0 */
 
 void modifyqueue(struct queue* org, struct queue* mod) {
     struct queue temp;
@@ -160,6 +179,9 @@ void modifyqueue(struct queue* org, struct queue* mod) {
         insert(org, z);
     }
 }
+
+
+// This function takes the values of a queue and reverses the order
 
 void reverse_queue(struct queue* org) {
     stack<int> temp;
